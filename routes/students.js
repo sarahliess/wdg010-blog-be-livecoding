@@ -9,7 +9,9 @@ const {
   createMultipleStudents,
 } = require("../controllers/students");
 
-router.route("/students").get(getAllStudents).post(createStudent);
+const auth = require("../middlewares/auth");
+
+router.route("/students").get(auth, getAllStudents).post(auth, createStudent);
 
 router.route("/students/bulk").post(createMultipleStudents);
 
